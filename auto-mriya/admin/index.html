@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Адмін-панель - AutoМРИЯ</title>
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/admin.css" />
+    </head>
+    <body>
+        <!-- Сторінка входу -->
+        <div id="loginPage" class="login-container">
+            <div class="login-box">
+                <div class="login-header">
+                    <h1>Auto<span class="highlight">МРІЯ</span></h1>
+                    <p>Адміністративна панель</p>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            class="form-input"
+                            placeholder="Введіть пароль"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Увійти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Головна панель адміна -->
+        <div id="adminPanel" class="admin-panel" style="display: none">
+            <!-- Хедер -->
+            <header class="admin-header">
+                <div class="header-content">
+                    <h1>Auto<span class="highlight">МРІЯ</span> <span class="admin-badge">Адмін</span></h1>
+                    <div class="header-actions">
+                        <button id="addCarBtn" class="btn btn-primary"><span class="icon">+</span> Додати авто</button>
+                        <button id="logoutBtn" class="btn btn-secondary">Вийти</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Фільтри і пошук -->
+            <div class="controls-section">
+                <div class="controls-content">
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            class="search-input"
+                            placeholder="Пошук за маркою або моделлю..."
+                        />
+                    </div>
+                    <div class="filter-group">
+                        <input type="number" id="priceFrom" class="filter-input" placeholder="Ціна від" />
+                        <input type="number" id="priceTo" class="filter-input" placeholder="Ціна до" />
+                        <button id="resetFilters" class="btn btn-outline">Скинути</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Статистика -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCars">0</div>
+                    <div class="stat-label">Всього авто</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="availableCars">0</div>
+                    <div class="stat-label">Доступні</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="reservedCars">0</div>
+                    <div class="stat-label">Зарезервовані</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="soldCars">0</div>
+                    <div class="stat-label">Продані</div>
+                </div>
+            </div>
+
+            <!-- Таблиця авто -->
+            <div class="table-section">
+                <div class="table-container">
+                    <table class="cars-table" id="carsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Фото</th>
+                                <th>Марка & Модель</th>
+                                <th>Рік</th>
+                                <th>Пробіг</th>
+                                <th>Ціна</th>
+                                <th>Стан</th>
+                                <th>Дата</th>
+                                <th>Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carsTableBody">
+                            <!-- Дані будуть додаватись динамічно -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Мобільні картки -->
+                <div class="mobile-cards" id="mobileCars">
+                    <!-- Картки для мобільних пристроїв -->
+                </div>
+
+                <!-- Empty state -->
+                <div id="emptyState" class="empty-state" style="display: none">
+                    <div class="empty-icon">🚗</div>
+                    <h3>Немає автомобілів</h3>
+                    <p>Додайте перше авто за допомогою кнопки вгорі</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальне вікно додавання/редагування -->
+        <div id="carModal" class="modal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Додати автомобіль</h2>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+
+                <form id="carForm" class="car-form">
+                    <input type="hidden" id="carId" />
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="carBrand">Марка автомобіля <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="carBrand"
+                                class="form-input"
+                                required
+                                placeholder="Toyota, BMW, Mercedes..."
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carModel">Модель <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="carModel"
+                                class="form-input"
+                                required
+                                placeholder="Camry, X5, E-Class..."
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="carYear">Рік випуску <span class="required">*</span></label>
+                            <input
+                                type="number"
+                                id="carYear"
+                                class="form-input"
+                                required
+                                min="1990"
+                                max="2026"
+                                placeholder="2020"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carBody">Тип кузова <span class="required">*</span></label>
+                            <select id="carBody" class="form-input" required>
+                                <option value="">Оберіть тип</option>
+                                <option value="sedan">Седан</option>
+                                <option value="suv">Позашляховик</option>
+                                <option value="coupe">Купе</option>
+                                <option value="hatchback">Хетчбек</option>
+                                <option value="wagon">Універсал</option>
+                                <option value="minivan">Мінівен</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="carEngine">Об'єм двигуна (л) <span class="required">*</span></label>
+                            <input
+                                type="number"
+                                id="carEngine"
+                                class="form-input"
+                                required
+                                step="0.1"
+                                min="0.8"
+                                max="8.0"
+                                placeholder="2.0"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carFuel">Тип палива <span class="required">*</span></label>
+                            <select id="carFuel" class="form-input" required>
+                                <option value="">Оберіть тип</option>
+                                <option value="petrol">Бензин</option>
+                                <option value="diesel">Дизель</option>
+                                <option value="hybrid">Гібрид</option>
+                                <option value="electric">Електро</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="carMileage">Пробіг (км) <span class="required">*</span></label>
+                            <input
+                                type="number"
+                                id="carMileage"
+                                class="form-input"
+                                required
+                                min="0"
+                                step="1000"
+                                placeholder="50000"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carPrice">Ціна (грн) <span class="required">*</span></label>
+                            <input
+                                type="number"
+                                id="carPrice"
+                                class="form-input"
+                                required
+                                min="0"
+                                step="1000"
+                                placeholder="450000"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carDescription">Короткий опис <span class="required">*</span></label>
+                        <textarea
+                            id="carDescription"
+                            class="form-textarea"
+                            required
+                            rows="4"
+                            minlength="50"
+                            maxlength="400"
+                            placeholder="Опишіть автомобіль: стан, комплектація, особливості... (50-400 символів)"
+                        ></textarea>
+                        <div class="char-counter"><span id="charCount">0</span> / 400 символів</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carStatus">Стан <span class="required">*</span></label>
+                        <select id="carStatus" class="form-input" required>
+                            <option value="available">Вільний</option>
+                            <option value="reserved">Зарезервований</option>
+                            <option value="sold">Продано</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carPhoto">Завантажити фото</label>
+                        <input type="file" id="carPhoto" class="form-input-file" accept="image/*" />
+                        <div class="photo-preview" id="photoPreview" style="display: none">
+                            <img id="previewImage" src="" alt="Preview" />
+                            <button type="button" class="remove-photo" id="removePhoto">&times;</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Зберегти</button>
+                        <button type="button" class="btn btn-outline" id="cancelBtn">Скасувати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Скрипти -->
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+        <script src="../js/firebase-config.js"></script>
+        <script src="../js/storage.js"></script>
+        <script src="js/cars-data.js"></script>
+        <script src="js/admin.js"></script>
+    </body>
+</html>

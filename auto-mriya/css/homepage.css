@@ -1,0 +1,350 @@
+/* Homepage Specific Styles - Стилі для головної сторінки */
+
+/* Scroll progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-green), var(--primary-green-light));
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* Stats Section */
+.stats-section {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-2xl);
+    text-align: center;
+}
+
+.stat-item {
+    padding: var(--spacing-xl);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-green);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.stat-number {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+}
+
+/* How it Works Section */
+.how-it-works {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--bg-primary);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+}
+
+.step-item {
+    position: relative;
+    padding: var(--spacing-xl);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border-primary), transparent);
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.step-item:last-child::before {
+    display: none;
+}
+
+.step-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-green);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-green);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+    border: 2px solid var(--primary-green);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-item:hover .step-number {
+    transform: scale(1.1) rotate(360deg);
+    background: var(--primary-green);
+    color: var(--bg-card);
+}
+
+.step-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.step-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, var(--primary-black-dark) 0%, var(--primary-black) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(16, 185, 129, 0.1), transparent);
+    pointer-events: none;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cta-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Scroll Animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .step-item::before {
+        display: none;
+    }
+    
+    .cta-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .cta-actions .btn {
+        width: 100%;
+    }
+}
+
+/* === ПРОСТОРІШИЙ, "ПОВІТРЯНИЙ" ДИЗАЙН СЕКЦІЙ ГОЛОВНОЇ СТОРІНКИ === */
+
+/* Більше "повітря" між секціями та всередині них */
+.popular-cars,
+.benefits,
+.stats-section,
+.how-it-works,
+.cta-section {
+    padding: 6rem 0;
+}
+
+.section-title {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-description {
+    font-size: var(--font-size-xl);
+    margin-bottom: 4rem;
+}
+
+/* Картки авто на головній - вищі фото, більше простору */
+.popular-cars .cars-grid {
+    gap: 2.5rem;
+}
+
+.popular-cars .car-image {
+    height: 280px;
+}
+
+.popular-cars .car-info {
+    padding: 1.75rem;
+}
+
+.popular-cars .car-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.popular-cars .car-details {
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-cta {
+    margin-top: 3rem;
+}
+
+/* Переваги - просторіші картки */
+.benefits-grid {
+    gap: 2.5rem;
+}
+
+.benefit-card {
+    padding: 2.5rem var(--spacing-xl);
+}
+
+.benefit-icon {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-description {
+    font-size: var(--font-size-lg);
+}
+
+/* Статистика - вищі картки */
+.stats-grid {
+    gap: 2rem;
+}
+
+.stat-item {
+    padding: 2.5rem var(--spacing-xl);
+}
+
+.stat-number {
+    font-size: 3.25rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Кроки - більше простору */
+.steps-grid {
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.step-item {
+    padding: 2.5rem var(--spacing-xl);
+}
+
+.step-description {
+    font-size: var(--font-size-base);
+}
+
+/* CTA - трохи вища секція */
+.cta-content {
+    max-width: 780px;
+}
+
+.cta-title {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta-description {
+    font-size: var(--font-size-xl);
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .popular-cars,
+    .benefits,
+    .stats-section,
+    .how-it-works,
+    .cta-section {
+        padding: 3.5rem 0;
+    }
+
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .section-description {
+        font-size: var(--font-size-base);
+        margin-bottom: 2.5rem;
+    }
+
+    .popular-cars .car-image {
+        height: 220px;
+    }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="AutoМРИЯ - продаж вживаних автомобілів. Великий вибір перевірених авто за найкращими цінами."
+        />
+        <meta name="keywords" content="вживані авто, продаж автомобілів, купити авто, автомобілі з пробігом" />
+        <title>AutoМРИЯ - Головна</title>
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="css/dark-theme.css" />
+        <link rel="stylesheet" href="css/professional.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/homepage.css" />
+    </head>
+    <body>
+        <!-- Хедер з навігацією -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <a href="index.html">
+                            <span class="logo-icon">🚗</span>
+                            <span class="logo-text">Auto<span class="logo-highlight">МРІЯ</span></span>
+                        </a>
+                    </div>
+                    <nav class="nav" role="navigation" aria-label="Головна навігація">
+                        <ul class="nav-list">
+                            <li><a href="index.html" class="nav-link active">Головна</a></li>
+                            <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+                        </ul>
+                    </nav>
+                    <button class="mobile-menu-toggle" aria-label="Відкрити меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Головна секція (Hero) -->
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Знайди автомобіль своєї мрії</h1>
+                        <p class="hero-description">
+                            Великий вибір перевірених вживаних автомобілів за найкращими цінами. Безпечні угоди та
+                            професійна підтримка.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="catalog.html" class="btn btn-primary">Переглянути каталог</a>
+                            <a href="#popular" class="btn btn-secondary">Популярні авто</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секція популярних автомобілів -->
+            <section id="popular" class="popular-cars">
+                <div class="container">
+                    <h2 class="section-title">Популярні пропозиції</h2>
+                    <p class="section-description">Найкращі автомобілі з нашого каталогу</p>
+
+                    <div class="cars-grid" id="popularCarsGrid">
+                        <p class="loading-state">Завантаження...</p>
+                    </div>
+
+                    <div class="section-cta">
+                        <a href="catalog.html" class="btn btn-outline">Дивитись всі авто</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секція переваг платформи -->
+            <section class="benefits">
+                <div class="container">
+                    <h2 class="section-title">Чому обирають AutoМРИЯ?</h2>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">✓</div>
+                            <h3 class="benefit-title">Перевірені авто</h3>
+                            <p class="benefit-description">
+                                Кожен автомобіль проходить детальну технічну перевірку перед публікацією
+                            </p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🔒</div>
+                            <h3 class="benefit-title">Безпечні угоди</h3>
+                            <p class="benefit-description">Юридична підтримка та безпечне оформлення документів</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💰</div>
+                            <h3 class="benefit-title">Кращі ціни</h3>
+                            <p class="benefit-description">
+                                Чесна оцінка та конкурентні ціни на весь каталог автомобілів
+                            </p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎯</div>
+                            <h3 class="benefit-title">Швидкий підбір</h3>
+                            <p class="benefit-description">
+                                Зручний фільтр та пошук допоможуть знайти ідеальний варіант
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Статистика з лічильниками -->
+            <section class="stats-section scroll-animate">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="1500">0</span>+</div>
+                            <div class="stat-label">Продано автомобілів</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="850">0</span>+</div>
+                            <div class="stat-label">Задоволених клієнтів</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
+                            <div class="stat-label">Позитивних відгуків</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">
+                                <span class="counter" data-target="7">0</span>
+                            </div>
+                            <div class="stat-label">Років на ринку</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Як це працює -->
+            <section class="how-it-works scroll-animate">
+                <div class="container">
+                    <h2 class="section-title">Як це працює</h2>
+                    <p class="section-description">Простий процес покупки авто за 4 кроки</p>
+
+                    <div class="steps-grid">
+                        <div class="step-item scroll-animate">
+                            <div class="step-number">1</div>
+                            <h3 class="step-title">Оберіть авто</h3>
+                            <p class="step-description">
+                                Перегляньте наш каталог та оберіть автомобіль, який вам подобається
+                            </p>
+                        </div>
+                        <div class="step-item scroll-animate">
+                            <div class="step-number">2</div>
+                            <h3 class="step-title">Тест-драйв</h3>
+                            <p class="step-description">Запишіться на тест-драйв та перевірте авто в дії</p>
+                        </div>
+                        <div class="step-item scroll-animate">
+                            <div class="step-number">3</div>
+                            <h3 class="step-title">Перевірка</h3>
+                            <p class="step-description">Проведіть повну технічну перевірку з нашими фахівцями</p>
+                        </div>
+                        <div class="step-item scroll-animate">
+                            <div class="step-number">4</div>
+                            <h3 class="step-title">Оформлення</h3>
+                            <p class="step-description">Оформте всі документи швидко та зручно</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA секція -->
+            <section class="cta-section scroll-animate">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Готові знайти авто своєї мрії?</h2>
+                        <p class="cta-description">Понад 200 автомобілів чекають на вас у нашому каталозі</p>
+                        <div class="cta-actions">
+                            <a href="catalog.html" class="btn btn-primary">Переглянути каталог</a>
+                            <a href="#" class="btn btn-outline">Зв'язатися з нами</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Прогрес бар скролу -->
+        <div class="scroll-progress"></div>
+
+        <!-- Підвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="logo">
+                            <span class="logo-icon">🚗</span>
+                            <span class="logo-text">Auto<span class="logo-highlight">МРІЯ</span></span>
+                        </div>
+                        <p class="footer-description">Ваш надійний партнер у виборі автомобіля</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4 class="footer-title">Навігація</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Головна</a></li>
+                            <li><a href="catalog.html">Каталог</a></li>
+                            <li><a href="admin/index.html">Адмін-панель</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4 class="footer-title">Контакти</h4>
+                        <ul class="footer-contacts">
+                            <li>📞 +380 XX XXX XX XX</li>
+                            <li>✉️ info@automriya.ua</li>
+                            <li>📍 м. Київ, Україна</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4 class="footer-title">Графік роботи</h4>
+                        <ul class="footer-schedule">
+                            <li>Пн-Пт: 9:00 - 18:00</li>
+                            <li>Сб: 10:00 - 16:00</li>
+                            <li>Нд: Вихідний</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AutoМРИЯ. Всі права захищено.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/icons.js"></script>
+        <script src="js/scroll-animations.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/storage.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

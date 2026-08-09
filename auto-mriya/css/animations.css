@@ -1,0 +1,389 @@
+/* Advanced Animations - Професійні анімації */
+
+/* Fade in анімація для елементів при завантаженні */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Pulse анімація для акцентів */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Shake для помилок */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* Ripple effect для кнопок */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Skeleton loading */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Rotate для loading */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Застосування анімацій */
+
+/* Header */
+.header {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.logo a {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.nav-link {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+    transform: translateY(-1px);
+}
+
+/* Hero секція */
+.hero {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.hero-title {
+    animation: fadeInUp 0.7s ease-out 0.1s both;
+}
+
+.hero-description {
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+
+.hero-actions {
+    animation: fadeInUp 0.7s ease-out 0.3s both;
+}
+
+/* Картки авто */
+.car-card {
+    animation: scaleIn 0.4s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.car-card:hover .car-image img {
+    transform: scale(1.05);
+}
+
+.car-image img {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Затримка для кожної картки */
+.car-card:nth-child(1) { animation-delay: 0s; }
+.car-card:nth-child(2) { animation-delay: 0.1s; }
+.car-card:nth-child(3) { animation-delay: 0.2s; }
+.car-card:nth-child(4) { animation-delay: 0.3s; }
+.car-card:nth-child(5) { animation-delay: 0.4s; }
+.car-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* Кнопки */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Фільтри */
+.filters-sidebar {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.filter-group {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.filter-group:nth-child(1) { animation-delay: 0.1s; }
+.filter-group:nth-child(2) { animation-delay: 0.15s; }
+.filter-group:nth-child(3) { animation-delay: 0.2s; }
+.filter-group:nth-child(4) { animation-delay: 0.25s; }
+.filter-group:nth-child(5) { animation-delay: 0.3s; }
+
+.filter-select,
+.filter-input {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-select:focus,
+.filter-input:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+/* Пошук */
+.search-box-main {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.search-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+.search-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Модалка */
+.modal.active {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal.active .modal-content {
+    animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:hover {
+    transform: rotate(90deg) scale(1.1);
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}
+
+/* Benefit cards */
+.benefit-card {
+    animation: scaleIn 0.5s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.benefit-card:nth-child(1) { animation-delay: 0.1s; }
+.benefit-card:nth-child(2) { animation-delay: 0.2s; }
+.benefit-card:nth-child(3) { animation-delay: 0.3s; }
+.benefit-card:nth-child(4) { animation-delay: 0.4s; }
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+}
+
+/* Toolbar */
+.catalog-toolbar {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Footer links */
+.footer-links a {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-links a:hover {
+    transform: translateX(4px);
+}
+
+/* Loading skeleton */
+.loading-skeleton {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+        90deg,
+        var(--bg-card) 0%,
+        var(--bg-elevated) 50%,
+        var(--bg-card) 100%
+    );
+    background-size: 1000px 100%;
+}
+
+/* Nav link активний стан */
+.nav-link.active {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Form inputs */
+.form-input,
+.form-textarea,
+.form-select {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    transform: translateY(-1px);
+}
+
+/* Table rows */
+.cars-table tbody tr {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cars-table tbody tr:hover {
+    transform: translateX(4px);
+}
+
+/* Badge pulse */
+.car-badge {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Page transitions */
+.page-title {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.page-description {
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+/* Empty state */
+.empty-state {
+    animation: scaleIn 0.5s ease-out;
+}
+
+/* Admin buttons */
+.btn-edit,
+.btn-delete {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Price animation */
+.car-price,
+.price-value {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.car-card:hover .car-price {
+    transform: scale(1.05);
+    color: var(--primary-green-light);
+}
+
+/* Стилі для SVG іконок */
+.icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-svg-large {
+    width: 48px;
+    height: 48px;
+}
+
+.btn .icon-svg {
+    margin-right: 8px;
+}
+
+/* Hover ефект для іконок */
+.icon-svg:hover {
+    transform: scale(1.1) rotate(5deg);
+}

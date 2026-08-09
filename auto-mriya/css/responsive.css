@@ -1,0 +1,268 @@
+/* Responsive Design - Адаптивні стилі */
+
+/* === ПЛАНШЕТ (до 1024px) === */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .cars-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-image img {
+        height: 300px;
+    }
+}
+
+/* === ПЛАНШЕТ МАЛИЙ (до 768px) === */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Хедер */
+    .nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav.active {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        box-shadow: var(--shadow-lg);
+        padding: var(--spacing-lg);
+    }
+
+    .nav.active .nav-list {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    /* Hero */
+    .hero {
+        padding: var(--spacing-2xl) 0;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .hero-description {
+        font-size: var(--font-size-lg);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    /* Секції */
+    .popular-cars,
+    .benefits,
+    .catalog-section,
+    .admin-section {
+        padding: var(--spacing-2xl) 0;
+    }
+
+    .section-title,
+    .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Футер */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+
+    /* Каталог */
+    .catalog-controls {
+        padding: var(--spacing-md);
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-actions {
+        grid-column: 1;
+        flex-direction: column;
+    }
+
+    .filter-actions .btn {
+        width: 100%;
+    }
+
+    .catalog-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sort-controls {
+        width: 100%;
+    }
+
+    .sort-select {
+        flex: 1;
+    }
+
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Модальне вікно */
+    .modal-content {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal-body {
+        padding: var(--spacing-md);
+    }
+
+    .modal-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .modal-specs {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-items: flex-start;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+
+    /* Адмін-панель */
+    .admin-form-container,
+    .admin-list-container {
+        padding: var(--spacing-md);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .cars-table {
+        font-size: var(--font-size-sm);
+    }
+
+    .cars-table th,
+    .cars-table td {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* === МОБІЛЬНИЙ (до 480px) === */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero-description {
+        font-size: var(--font-size-base);
+    }
+
+    .section-title,
+    .page-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .car-card {
+        min-width: 280px;
+    }
+
+    .car-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .car-price {
+        font-size: var(--font-size-xl);
+    }
+
+    .benefit-icon {
+        font-size: var(--font-size-4xl);
+    }
+
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: var(--font-size-sm);
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    /* Таблиця в адмін-панелі - горизонтальний скролл */
+    .cars-table-wrapper {
+        margin: 0 calc(var(--spacing-md) * -1);
+    }
+
+    .cars-table {
+        min-width: 600px;
+    }
+
+    .modal-image img {
+        height: 200px;
+    }
+
+    .price-value {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* === WIDE ЕКРАНИ (понад 1280px) === */
+@media (min-width: 1280px) {
+    .cars-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}

@@ -1,0 +1,270 @@
+/* Dark Theme Override - Темна тема для всіх компонентів */
+
+/* Оновлення базових стилів для темної теми */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Секції та заголовки */
+.section-title,
+.page-title {
+    color: var(--text-primary);
+}
+
+.section-description,
+.page-description {
+    color: var(--text-secondary);
+}
+
+/* Картки автомобілів */
+.car-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.car-card:hover {
+    border-color: var(--primary-green);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+}
+
+.car-title {
+    color: var(--text-primary);
+}
+
+.car-details {
+    color: var(--text-muted);
+}
+
+/* Переваги */
+.benefit-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+}
+
+.benefit-title {
+    color: var(--text-primary);
+}
+
+.benefit-description {
+    color: var(--text-secondary);
+}
+
+/* Секції */
+.popular-cars,
+.catalog-section,
+.admin-section {
+    background-color: var(--bg-primary);
+}
+
+/* Каталог */
+.catalog-controls {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.search-input,
+.filter-select,
+.filter-input {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-secondary);
+}
+
+.search-input::placeholder,
+.filter-input::placeholder {
+    color: var(--text-muted);
+}
+
+.filter-label {
+    color: var(--text-secondary);
+}
+
+.results-count,
+.sort-label {
+    color: var(--text-secondary);
+}
+
+.sort-select {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-secondary);
+}
+
+.empty-state {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.empty-state h3 {
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+}
+
+/* Модальне вікно */
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.modal-title {
+    color: var(--text-primary);
+}
+
+.spec-label {
+    color: var(--text-muted);
+}
+
+.spec-value {
+    color: var(--text-primary);
+}
+
+.modal-description h3 {
+    color: var(--text-primary);
+}
+
+.modal-description p {
+    color: var(--text-secondary);
+}
+
+.modal-close {
+    color: var(--text-muted);
+}
+
+.modal-close:hover {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+.modal-footer {
+    border-top-color: var(--border-primary);
+}
+
+.price-label {
+    color: var(--text-muted);
+}
+
+/* Адмін-панель */
+.admin-form-container,
+.admin-list-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.form-title,
+.list-title {
+    color: var(--text-primary);
+}
+
+.form-label {
+    color: var(--text-secondary);
+}
+
+.form-input,
+.form-textarea {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-secondary);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.form-input-file {
+    background-color: var(--bg-elevated);
+    border-color: var(--border-secondary);
+    color: var(--text-secondary);
+}
+
+.total-count {
+    color: var(--text-secondary);
+}
+
+.cars-table thead {
+    background-color: var(--bg-elevated);
+}
+
+.cars-table th {
+    color: var(--text-secondary);
+}
+
+.cars-table td {
+    color: var(--text-primary);
+    border-bottom-color: var(--border-primary);
+}
+
+.cars-table tbody tr:hover {
+    background-color: var(--bg-elevated);
+}
+
+.empty-row td {
+    color: var(--text-muted);
+}
+
+/* Анімації для hover ефектів */
+.car-card,
+.benefit-card,
+.btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.car-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.1);
+}
+
+/* Glow ефект для кнопок */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Skeleton loading анімація */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-skeleton {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+        90deg,
+        var(--bg-card) 0%,
+        var(--bg-elevated) 50%,
+        var(--bg-card) 100%
+    );
+    background-size: 1000px 100%;
+}
