@@ -11,10 +11,8 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-var db      = firebase.firestore();
-var auth    = (typeof firebase.auth === "function") ? firebase.auth() : null;
-var storage = (typeof firebase.storage === "function") ? firebase.storage() : null;
+var db   = firebase.firestore();
+var auth = (typeof firebase.auth === "function") ? firebase.auth() : null;
 
 window.db = db;
 window.auth = auth;
-window.storage = storage;

@@ -295,7 +295,7 @@
 
 /* Nav link активний стан */
 .nav-link.active {
-    animation: pulse 2s ease-in-out infinite;
+    animation: none;
 }
 
 /* Form inputs */

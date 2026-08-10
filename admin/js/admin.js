@@ -65,6 +65,9 @@ loginForm.addEventListener('submit', (e) => {
         } else {
             alert('❌ Невірний пароль!');
         }
+    }).catch((err) => {
+        if (submitBtn) submitBtn.disabled = false;
+        alert('❌ ' + err.message);
     });
 });
 
@@ -226,12 +229,11 @@ carForm.addEventListener('submit', (e) => {
     };
 
     if (currentPhotoFile) {
-        // Обрано нове фото - стискаємо і завантажуємо у Storage
-        compressImage(currentPhotoFile)
-            .then(uploadCarPhoto)
+        // Обрано нове фото - стискаємо у base64 з автопідбором якості
+        compressImageToLimit(currentPhotoFile)
             .then(finishSave)
             .catch((err) => {
-                alert('❌ Помилка завантаження фото: ' + (err && err.message ? err.message : err));
+                alert('❌ Помилка обробки фото: ' + (err && err.message ? err.message : err));
                 if (submitBtn) submitBtn.disabled = false;
             });
     } else {
@@ -300,11 +302,15 @@ function resetForm() {
     charCount.textContent = '0';
 }
 
-// ===== ЗАВАНТАЖЕННЯ ФОТО (стиснення + Firebase Storage) =====
-let currentPhotoFile = null; // обраний файл, ще не завантажений
+// ===== ЗАВАНТАЖЕННЯ ФОТО (стиснення в base64 для Firestore, без Storage) =====
+let currentPhotoFile = null; // обраний файл, ще не стиснутий
 
-// Стискає зображення через canvas: макс. ширина 1280px, JPEG якість 0.8
-function compressImage(file, maxWidth = 1280, quality = 0.8) {
+// Ліміт документа Firestore - 1MB. Лишаємо запас під інші поля,
+// тому цільовий розмір base64-рядка фото - не більше ~700KB (символів).
+const MAX_PHOTO_BASE64_LENGTH = 700000;
+
+// Стискає зображення через canvas у base64 JPEG заданої якості/ширини
+function compressImage(file, maxWidth, quality) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onerror = () => reject(new Error('Не вдалося прочитати файл'));
@@ -321,10 +327,7 @@ function compressImage(file, maxWidth = 1280, quality = 0.8) {
                 canvas.width = width;
                 canvas.height = height;
                 canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-                canvas.toBlob((blob) => {
-                    if (!blob) { reject(new Error('Не вдалося стиснути зображення')); return; }
-                    resolve(blob);
-                }, 'image/jpeg', quality);
+                resolve(canvas.toDataURL('image/jpeg', quality));
             };
             img.src = e.target.result;
         };
@@ -332,12 +335,28 @@ function compressImage(file, maxWidth = 1280, quality = 0.8) {
     });
 }
 
-// Завантажує стиснене фото у Firebase Storage, повертає посилання
-function uploadCarPhoto(blob) {
-    if (!window.storage) return Promise.resolve('');
-    const path = 'cars/' + Date.now() + '_' + Math.random().toString(36).slice(2) + '.jpg';
-    const ref = window.storage.ref(path);
-    return ref.put(blob).then(() => ref.getDownloadURL());
+// Пробує стиснути фото послідовно жорсткіше, поки base64 не влізе в ліміт
+function compressImageToLimit(file) {
+    const attempts = [
+        { maxWidth: 1280, quality: 0.75 },
+        { maxWidth: 1000, quality: 0.6 },
+        { maxWidth: 800, quality: 0.5 },
+        { maxWidth: 640, quality: 0.4 },
+        { maxWidth: 480, quality: 0.35 }
+    ];
+
+    function tryStep(i) {
+        if (i >= attempts.length) {
+            return Promise.reject(new Error('Фото занадто велике навіть після стиснення. Спробуйте інше зображення.'));
+        }
+        const { maxWidth, quality } = attempts[i];
+        return compressImage(file, maxWidth, quality).then((dataUrl) => {
+            if (dataUrl.length <= MAX_PHOTO_BASE64_LENGTH) return dataUrl;
+            return tryStep(i + 1);
+        });
+    }
+
+    return tryStep(0);
 }
 
 photoInput.addEventListener('change', (e) => {

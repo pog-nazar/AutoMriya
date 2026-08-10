@@ -44,14 +44,22 @@
         top: 100%;
         left: 0;
         right: 0;
-        background-color: var(--white);
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-primary);
         box-shadow: var(--shadow-lg);
         padding: var(--spacing-lg);
     }
 
     .nav.active .nav-list {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-xs);
+    }
+
+    .nav.active .nav-link {
+        display: block;
+        width: 100%;
+        padding: var(--spacing-md);
+        font-size: var(--font-size-lg);
     }
 
     /* Hero */

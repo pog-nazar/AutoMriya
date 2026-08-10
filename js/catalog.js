@@ -110,6 +110,7 @@ function setupEventListeners() {
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
         });
     }
 }

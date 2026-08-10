@@ -18,9 +18,10 @@ const FIREBASE_ADMIN_EMAIL = 'admin@auto-mriya.local';
 
 // ===== АВТЕНТИФІКАЦІЯ =====
 const Auth = {
-    // Повертає Promise<boolean>
+    // Повертає Promise<boolean>. Якщо пароль правильний, але Firebase Auth
+    // відхилив вхід - Promise відхиляється з поясненням (а не тихо пускає далі).
     login(login, password) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (login !== ADMIN_LOGIN) { resolve(false); return; }
 
             const encoder = new TextEncoder();
@@ -31,17 +32,25 @@ const Auth = {
 
                 if (hash !== ADMIN_PASSWORD_HASH) { resolve(false); return; }
 
-                if (window.auth) {
-                    window.auth.signInWithEmailAndPassword(FIREBASE_ADMIN_EMAIL, password)
-                        .catch(() => { /* Firebase Auth недоступний - продовжуємо офлайн */ })
-                        .finally(() => {
-                            sessionStorage.setItem(AUTH_KEY, '1');
-                            resolve(true);
-                        });
-                } else {
+                if (!window.auth) {
                     sessionStorage.setItem(AUTH_KEY, '1');
                     resolve(true);
+                    return;
                 }
+
+                window.auth.signInWithEmailAndPassword(FIREBASE_ADMIN_EMAIL, password)
+                    .then(() => {
+                        sessionStorage.setItem(AUTH_KEY, '1');
+                        resolve(true);
+                    })
+                    .catch((err) => {
+                        console.error('Firebase Auth помилка входу:', err);
+                        reject(new Error(
+                            'Пароль вірний, але вхід у Firebase не вдався (' + err.code + '). ' +
+                            'Перевірте в Firebase Authentication → Users, що є користувач ' +
+                            FIREBASE_ADMIN_EMAIL + ' з таким самим паролем.'
+                        ));
+                    });
             });
         });
     },
